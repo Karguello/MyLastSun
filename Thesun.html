@@ -1,0 +1,295 @@
+<DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+ <title>Here Comes the Sun</title>
+ <script>
+   window.onload = function(){
+     
+     var imageObj = new Image();
+     var canvas = document.getElementById("canvas"),
+     c = canvas.getContext("2d");
+     var shapes = []
+     var timer;
+     var timerTwo;
+     var possibleShapes = ['rectangle','arc','line','circle','curve'];
+     var posX = 30,
+         posY = 100;
+         
+     
+
+
+     var sun = new Image();
+     function init(){
+     sun.src = 'http://s2.postimg.org/x4jzd6h21/sun.png';
+     window.requestAnimationFrame(draw);
+     }
+    
+
+
+      imageObj.onload = function() {
+      c.drawImage(imageObj, 800, 500);
+     };
+      imageObj.src = 'http://s2.postimg.org/x4jzd6h21/sun.png';
+
+      
+      
+    function fillBackgroundColor() {
+      c.fillStyle = "white";
+      c.fillRect(0,0, canvas.width, canvas.height);
+      }
+      fillBackgroundColor()
+
+    function drawRect() {
+      c.fillStyle = "#ffff4d";
+      c.fillRect(500, 400, 300, 200);
+      }
+      drawRect();
+    
+     
+   
+    function drawLine() {  
+      c.beginPath();
+      c.moveTo(50,100);
+      c.lineTo(300,400);//move line postion on move to starting point to line to end point
+      c.stroke();
+      c.strokeStyle = '#e5f9ff';
+      c.lineWidth = 3;
+      c.stroke();
+      }
+      drawLine();
+     
+    function drawText() {
+    
+      c.fillStyle = "#b3ffff";
+      c.font = "250px Helventica";
+      c.fillText("Comes", 300, 200);
+
+      c.fillStyle = "white";
+      c.font = "180px Helventica";
+      c.fillText("here", 400, 500);
+    
+      c.fillStyle = "#ccffee";
+      c.font = "300px Helventica";
+      c.fillText("The", 0, 400);
+    
+      c.fillStyle = "#ffcc00";
+      c.font = "400px Arial Bold";
+      c.fillText("Sun.", 0, 700);
+
+      c.fillStyle = "white";
+      c.font = "100px Arial Bold";
+      c.fillText("It's Alright", 90, 500);
+      //(x,y locations)
+      }
+
+      drawText();
+      c.beginPath();
+      //moveTo(200, 340);
+      c.arc(5500, 300, 50, 0, Math.PI * 2, false); //(x,y, radius of circle ,starting and ending, true false clockwise/counterclock)
+      c.fill();
+
+      
+
+        var posX = 5;
+        setInterval(function(){
+          posY +7;
+
+        c.fillStyle ="#ffffcc";
+        
+        c.fillStyle = "yellow";
+        c.beginPath();
+        c.arc(posX , 200, 5, 0, Math.PI * 2, false);
+        c.fill();
+
+       }, 50);
+
+
+      //My Animation
+      
+      
+      setInterval(function(){
+ 
+        posX += 3;
+
+        if  (posX > 200){
+        	posY += 4;
+        }
+
+        
+        c.fillStyle = "rgba(0,0,0,0.0001)"; //color
+        c.fillRect(0, 0, canvas.width, canvas.height);
+
+        
+        c.fillStyle = "white";
+        c.beginPath();
+        c.arc(posX , posY, 5, 2, Math.PI * 2, false);
+        c.fill();
+
+        c.fillStyle = "#ffff66";
+        c.beginPath();
+        c.arc(30 , posY, 5, 0, Math.PI * 2, true);
+        c.fill();
+
+        //adding a new circle/line/shapes into motion
+       
+       function drawCircle() {
+        c.fillStyle = "#ffff66";
+        c.beginPath();
+        c.arc(posX , 200, 5, 0, Math.PI * 2, false);
+        c.fill();
+
+
+        c.fillStyle = "#ffff66";
+        c.beginPath();
+        c.arc(200 , posY, 5, 0, Math.PI * 2, false);
+        c.fill();
+
+
+        c.fillStyle = "#ffff66";
+        c.beginPath();
+        c.arc(posX , 400, 5, 0, Math.PI * 2, false);
+        c.fill();
+        
+        
+        c.fillStyle = "#ffff66";
+        c.beginPath();
+        c.arc(300 , posY, 5, 2, Math.PI * 2, true);
+        c.fill();
+       }
+       drawCircle();
+
+       function drawFlower() {
+          c.beginPath();
+          c.moveTo(130.3, 37.6);
+          c.bezierCurveTo(126.0, -8.3, 56.3, -16.6, 47.4, 37.6);
+          c.bezierCurveTo(-1.4, 33.0, -17.0, 93.7, 21.9, 115.6);
+          c.bezierCurveTo(5.6, 158.7, 55.0, 192.7, 88.8, 162.3);
+          c.bezierCurveTo(119.3, 191.4, 172.3, 162.0, 155.7, 115.7);
+          c.bezierCurveTo(192.0, 98.4, 183.6, 33.7, 130.3, 37.6);
+          c.closePath();
+          c.strokeStyle = 'white';
+          c.stroke();
+
+      }
+      drawFlower();
+      
+    function drawArc() { 
+      c.beginPath();
+      c.moveTo(posX, 200, 5, 2, Math.PI * 2, true);
+      c.quadraticCurveTo(450, 10, 5, 550);
+      c.lineWidth = 2;
+      c.strokeStyle = '#ffff66';
+      c.stroke();
+      }
+      drawArc();
+
+      c.beginPath();
+      c.moveTo(posX, posY, 3, 2, Math.PI * 2, false);
+      c.lineTo(300,400);//move line postion on move to starting point to line to end point
+      c.strokeStyle = '#ffcc66';
+      c.lineWidth = 1;
+      c.stroke();
+      
+      c.beginPath();
+      c.moveTo(100, posY, 5, 2, Math.PI * 2, true);
+      c.lineTo(300,400);//move line postion on move to starting point to line to end point
+      c.strokeStyle = '#ffcc66';
+      c.lineWidth = 1;
+      c.stroke();
+        
+       c.beginPath();
+      c.moveTo(50, posY, 5, 2, Math.PI * 2, true);
+      c.lineTo(300,400);//move line postion on move to starting point to line to end point
+      c.strokeStyle = '#ffcc66';
+      c.lineWidth = 2;
+      c.stroke();  
+      
+      
+    function drawSemicircle(){
+      c.beginPath();
+      c.arc(posX, posY, 5, 2, Math.PI * 2, true);
+      c.closePath();
+      c.lineWidth = 5;
+      c.fillStyle = '#e5f9ff';
+      c.fill();
+      c.strokeStyle = '#e5f9ff';
+      c.stroke();
+    }
+    drawSemicircle();
+
+
+    function drawBezier() {
+      c.beginPath();
+      c.moveTo(188, 130);
+      c.bezierCurveTo(500 , posY, 10, 2, Math.PI * 2, false);
+      c.lineWidth = 10;
+
+      // line color
+      c.strokeStyle = '#ffffb3';
+      c.stroke();
+
+       c.beginPath();
+      c.moveTo(188, 130);
+      c.bezierCurveTo(500 , posY, 10, 2, Math.PI * 2, false);
+      c.lineWidth = 10;
+      c.strokeStyle = '#ffff4d';
+      c.stroke();
+
+      function drawBezier() {
+      c.beginPath();
+      c.moveTo(188, 130);
+      c.bezierCurveTo(500 , 300, 10, 2, Math.PI * 2, false);
+      c.lineWidth = 10;
+
+      // line color
+      c.strokeStyle = '#ffffcc';
+      c.stroke();
+
+       c.beginPath();
+      c.moveTo(188, 130);
+      c.bezierCurveTo(500 , 200, 10, 2, Math.PI * 2, false);
+      c.lineWidth = 10;
+      c.strokeStyle = '#ffff80';
+      c.stroke();
+    }
+    
+
+      drawBezier();
+
+    }
+    
+
+      drawBezier();
+
+  
+      }, 50);
+
+     
+   }
+
+
+   
+    
+ </script>
+ <style>
+ </style>
+ </head>
+ <body>
+ 	<audio controls autoplay>
+ 		<source src="Here Comes The Sun.mp3" type=" audio/mpeg"/>
+ 		if you can see this update browser
+
+ 	</audio>
+ 	
+ 	<canvas id="canvas" width="1000" height="700">
+     Go get Chrome
+
+<p>Canvas:</p>
+<canvas id="myCanvas" width="240" height="297" style="border:1px solid #d3d3d3;">
+Your browser does not support the HTML5 canvas tag.
+</canvas>
+</body>
+</html>	
+
+
